@@ -1,12 +1,16 @@
 - hosts: all
   become: yes
   tasks:
+    - name: Update packages
+      apt:
+        update_cache: yes
+
     - name: Install Apache
-      yum:
-        name: httpd
+      apt:
+        name: apache2
         state: present
 
     - name: Start Apache service
       service:
-        name: httpd
+        name: apache2
         state: started
