@@ -29,7 +29,7 @@ pipeline {
         stage('Get EC2 Public IP') {
             steps {
                 script {
-                    def EC2_IP = sh(script: "terraform output -raw public_ip", returnStdout: true).trim()
+                    env.EC2_IP = sh(script: "terraform output -raw public_ip", returnStdout: true).trim()
                     echo "EC2 Public IP: ${EC2_IP}"
                 }
             }
@@ -37,7 +37,7 @@ pipeline {
 
         stage('Run Ansible Playbook') {
             steps {
-                writeFile file: 'inventory', text: "${EC2_IP} ansible_user=ubuntu ansible_ssh_private_key_file=/var/jenkins_home/keys/test-ec2-200.pem"
+                writeFile file: 'inventory', text: "${env.EC2_IP} ansible_user=ubuntu ansible_ssh_private_key_file=/var/jenkins_home/keys/test-ec2-200.pem"
                 sh 'ansible-playbook -i inventory playbook.yml --ssh-extra-args="-o StrictHostKeyChecking=no'
             }
         }
