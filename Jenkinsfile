@@ -35,7 +35,7 @@ pipeline {
 
         stage('Run Ansible Playbook') {
             steps {
-                writeFile file: 'inventory', text: "${EC2_IP} ansible_user=ubuntu ansible_ssh_private_key_file=${SSH_KEY}"
+                writeFile file: 'inventory', text: "${EC2_IP} ansible_user=ubuntu ansible_ssh_private_key_file=/var/jenkins_home/keys/test-ec2-200.pem"
                 sh 'ansible-playbook -i inventory playbook.yml'
             }
         }
