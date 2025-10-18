@@ -4,6 +4,8 @@ pipeline {
     environment {
         AWS_CREDENTIALS = credentials('aws-cred')
         SSH_KEY = credentials('ec2-key')
+        SSH_KEY = '/var/jenkins_home/keys/test-ec2-200.pem'
+        ANSIBLE_HOST_KEY_CHECKING = 'False'  // لتخطي host key verification
     }
 
     stages {
