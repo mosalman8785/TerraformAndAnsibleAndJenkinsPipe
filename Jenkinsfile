@@ -38,7 +38,7 @@ pipeline {
         stage('Run Ansible Playbook') {
             steps {
                 writeFile file: 'inventory', text: "${env.EC2_IP} ansible_user=ubuntu ansible_ssh_private_key_file=/var/jenkins_home/keys/test-ec2-200.pem"
-                sh 'ansible-playbook -i inventory playbook.yml --ssh-extra-args="-o StrictHostKeyChecking=no'
+                sh 'ansible-playbook -i inventory playbook.yml --ssh-extra-args="-o StrictHostKeyChecking=no"'
             }
         }
     }
