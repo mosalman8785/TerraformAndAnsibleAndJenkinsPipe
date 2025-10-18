@@ -6,7 +6,7 @@ provider "aws" {
 
 resource "aws_instance" "demo_ec2" {
   ami           = "ami-0a716d3f3b16d290c"  # Ubuntu 22.04 LTS
-  instance_type = "t2.micro"
+  instance_type = "t3.micro"
   key_name      = "test-ec2-200"
 
   tags = {
