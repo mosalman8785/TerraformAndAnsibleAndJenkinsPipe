@@ -5,7 +5,7 @@ provider "aws" {
 }
 
 resource "aws_instance" "demo_ec2" {
-  ami           = "ami-085f9c64a9b75eed5"  # Ubuntu 22.04 LTS
+  ami           = "ami-0a716d3f3b16d290c"  # Ubuntu 22.04 LTS
   instance_type = "t2.micro"
   key_name      = "my-key"
 
